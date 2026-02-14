@@ -92,4 +92,23 @@ SLACK_CREDENTIALS = {
         credential_id="slack",
         credential_key="access_token",
     ),
+    
+    # User token (optional)
+    "slack_user": CredentialSpec(
+        env_var="SLACK_USER_TOKEN",
+        tools=[
+            "slack_search_messages",
+            "slack_find_user_by_email",
+            "slack_get_messages_for_analysis",
+        ],
+        required=False,   # ✅ Important
+        startup_required=False,
+        help_url="https://api.slack.com/apps",
+        description="Slack User Token (starts with xoxp-)",
+        aden_supported=True,
+        aden_provider_name="slack",
+        direct_api_key_supported=True,
+        credential_id="slack_user",   # ✅ Fix
+        credential_key="access_token",
+    ),
 }
