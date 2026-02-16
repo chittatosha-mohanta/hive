@@ -733,13 +733,20 @@ def cmd_list(args: argparse.Namespace) -> int:
                     }
                 )
                 runner.cleanup()
+            except KeyError as e:
+                agents.append(
+                    {
+                        "path": str(path),
+                        "error": f"Invalid agent config: missing {e}",
+                    }
+                )
             except Exception as e:
                 agents.append(
                     {
                         "path": str(path),
-                        "error": str(e),
+                        "error": f"Failed to load agent: {e}",
                     }
-                )
+                )    
 
     if not agents:
         print(f"No agents found in {directory}")
